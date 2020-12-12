@@ -38,7 +38,7 @@
                      let getid = JSON.parse(data);//JSONを連想配列にする
                      console.log(getid.data[0].id);//連想配列内のオブジェクトからIDまで行く
                      const url1= 'https://graph.facebook.com/'
-                     const url2 = '/top_media?user_id='+businessID+'&fields=media_url,permalink&limit='+limit+'&access_token='+accessToken;
+                     const url2 = '/recent_media?user_id='+businessID+'&fields=media_url,permalink&limit='+limit+'&access_token='+accessToken;
                      url3 = url1 + getid.data[0].id + url2;
                      //console.log(url3);//投稿検索URLの表示
                     }
