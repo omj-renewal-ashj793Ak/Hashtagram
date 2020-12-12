@@ -1,0 +1,26 @@
+
+
+.container{
+    text-align: center;
+}
+
+.instagram {
+    width: 1024px;
+    margin: 0 auto;
+}
+
+.instagram ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+
+.instagram li {
+    margin: 10px;
+}
+
+.instagram img {
+    width: 300px;
+      
+}

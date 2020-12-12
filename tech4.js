@@ -3,7 +3,7 @@
         //クリックしてスタート
           //facebook-jsonを取得して表示
               let count = 0;
-              const limit = 20; //表示件数
+              const limit = 50; //表示件数
               const graph_api = 'https://graph.facebook.com/ig_hashtag_search?';
               const accessToken = 'EAAnGQ8kLkaUBAIY8dCfTvIYYri2LE322JrPErhftRqOj2GCyyil045DGekgaH6KYkNotsKASgDlPw6e4ZAtLxMhfuH4ZAwsj0E20p2ifYBmHxinZCdT7TKmILcLcZBnf8zUANt6EuLLlcH6wByM8uSG2AedtUluQUToTAYcgXBKzteGkmeadzXsYEC9kmHcZD'; // アクセストークン
               const businessID = '17841441477914224'; //グラフAPIエクスプローラで取得したinstagram_business_accountのID
@@ -90,7 +90,7 @@
                       }
                       flag = 0;
                     }
-                    console.log(NewResult);
+                    //console.log(NewResult);
                   
                   console.log(NewResult);
                   //表示
@@ -100,7 +100,7 @@
                       text2 = '<img src="'+NewResult[i].media_url+'">';
                       text3 = '</a></li>';
                       text = text + text1 + text2 + text3;
-                      console.log(NewResult[i]);
+                      //console.log(NewResult[i]);
                     console.log(NewResult[i].permalink);
                       
                     }
