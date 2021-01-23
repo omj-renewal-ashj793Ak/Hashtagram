@@ -3,7 +3,7 @@
         //クリックしてスタート
           //facebook-jsonを取得して表示
               let count = 0;
-              const limit = 20; //表示件数
+              const limit = 50; //表示件数
               const graph_api = 'https://graph.facebook.com/ig_hashtag_search?';
               const accessToken = 'EAAnGQ8kLkaUBAIY8dCfTvIYYri2LE322JrPErhftRqOj2GCyyil045DGekgaH6KYkNotsKASgDlPw6e4ZAtLxMhfuH4ZAwsj0E20p2ifYBmHxinZCdT7TKmILcLcZBnf8zUANt6EuLLlcH6wByM8uSG2AedtUluQUToTAYcgXBKzteGkmeadzXsYEC9kmHcZD'; // アクセストークン
               const businessID = '17841441477914224'; //グラフAPIエクスプローラで取得したinstagram_business_accountのID
@@ -28,19 +28,19 @@
               
                 //タグID検索
                 let request = new XMLHttpRequest();
-                     request.open('GET', url, false);
-                     request.send(null);
+                    request.open('GET', url, false);
+                    request.send(null);
                 let url3;
           
                   if (request.readyState === 4 && request.status === 200){//リクエストの成功判定
                     let data = request.responseText;
                      //console.log(data);//JSONデータの表示
-                     let getid = JSON.parse(data);//JSONを連想配列にする
-                     console.log(getid.data[0].id);//連想配列内のオブジェクトからIDまで行く
-                     const url1= 'https://graph.facebook.com/'
-                     const url2 = '/top_media?user_id='+businessID+'&fields=media_url,permalink&limit='+limit+'&access_token='+accessToken;
-                     url3 = url1 + getid.data[0].id + url2;
-                     //console.log(url3);//投稿検索URLの表示
+                    let getid = JSON.parse(data);//JSONを連想配列にする
+                    console.log(getid.data[0].id);//連想配列内のオブジェクトからIDまで行く
+                    const url1= 'https://graph.facebook.com/'
+                    const url2 = '/recent_media?user_id='+businessID+'&fields=media_url,permalink&limit='+limit+'&access_token='+accessToken;
+                    url3 = url1 + getid.data[0].id + url2;
+                    //console.log(url3);//投稿検索URLの表示
                     }
                     
                 //タグIDから投稿IDを検索する
@@ -50,7 +50,7 @@
           
                 // let getid2 ;
           
-                 if (request2.status == 200){
+                if (request2.status == 200){
                     let data2 = request2.responseText;
                     console.log(data2);
                     let getid2 = JSON.parse(data2);
@@ -58,7 +58,7 @@
                     console.log(results);
                     
 
-                   
+                  
                     
           
                   
@@ -72,7 +72,7 @@
                     for(let i=0;i<limit;i++){
                         filteredResult[i] = results[0][i];
                     }
-             
+            
                     let flag = 0;
                     for(let cnt=0;cnt<limit;cnt++){
                       for(let i=0;i<hashtag.length-1;i++){
@@ -83,14 +83,14 @@
                           if(filteredResult[cnt].id == results[i+1][j].id){
                             flag = 1;
                           }
-                         }
+                        }
                       }
                       if(flag == 1){
                         NewResult.push(filteredResult[cnt]);
                       }
                       flag = 0;
                     }
-                    console.log(NewResult);
+                    //console.log(NewResult);
                   
                   console.log(NewResult);
                   //表示
@@ -100,7 +100,7 @@
                       text2 = '<img src="'+NewResult[i].media_url+'">';
                       text3 = '</a></li>';
                       text = text + text1 + text2 + text3;
-                      console.log(NewResult[i]);
+                      //console.log(NewResult[i]);
                     console.log(NewResult[i].permalink);
                       
                     }
@@ -110,7 +110,7 @@
                     for(let i=0;i<limit;i++){
                       NewResult.push(results[0][i]);
                     }
-                   
+                  
                       
                       
                       console.log(NewResult);
