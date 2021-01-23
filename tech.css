@@ -1,3 +1,54 @@
+/* 初期設定 */
+
+html {
+    font-size: 2.6666666666vw;
+}
+
+@media screen and (min-width: 599px) {
+    html {
+        font-size: 10px;
+    }
+}
+
+body {
+    font-size: 1.4rem;
+    line-height: 2.14285714286;
+    margin: 0;
+    padding: 0;
+}
+
+@media screen and (min-width: 599px) {
+    body {
+    font-size: 1.4rem;
+    }
+}
+
+
+
+
+/* メイン */
+.myMv {
+    height: 90vh;
+}
+
+.myMvBack {
+    height: 60rem;
+    width: 60rem;
+    margin: 0 auto;
+    background-image: url("hashtagram.PNG");
+    background-position: center;
+    background-size: cover;
+    padding: 33rem 0 0;
+}
+
+button, input, optgroup, select, textarea {
+    font-family: inherit;
+    font-size: 2.4rem;
+    line-height: 1.5;
+    margin: 0;
+    border-radius: 1rem;
+    outline: none;
+}
 
 
 .container{
@@ -5,14 +56,14 @@
 }
 
 .instagram {
-    width: 1024px;
-    margin: 0 auto;
+    margin: 0;
 }
 
 .instagram ul {
     display: flex;
-    justify-content: center;
+    justify-content: inherit;
     flex-wrap: wrap;
+    list-style: none;
 }
 
 
@@ -21,6 +72,5 @@
 }
 
 .instagram img {
-    width: 300px;
-      
+    width: 20rem;
 }
