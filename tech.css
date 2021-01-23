@@ -28,13 +28,19 @@ body {
 
 /* メイン */
 .myMv {
-    height: 90vh;
+    padding: 10rem 0 0;
 }
 
 .myMvBack {
-    height: 60rem;
-    width: 60rem;
-    margin: 0 auto;
+    height: 70rem;
+    width: 70rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    vertical-align: middle;
     background-image: url("hashtagram.PNG");
     background-position: center;
     background-size: cover;
