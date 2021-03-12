@@ -125,7 +125,6 @@ Promise.all([func1(hashtag[0]), func1(hashtag[1]), func1(hashtag[2])])
                     for(let i=0;i<limit;i++){
                       NewResult.push(results1[0][i]);
                     }
-                   
                       
                       
                       console.log(NewResult);
@@ -136,7 +135,6 @@ Promise.all([func1(hashtag[0]), func1(hashtag[1]), func1(hashtag[2])])
                           text2 = '<img src="'+NewResult[i].media_url+'">';
                           text3 = '</a></li>';
                           text = text + text1 + text2 + text3;
-                          
                           
                         }
                     // }
