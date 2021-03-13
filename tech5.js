@@ -2,7 +2,7 @@ document.getElementById("button").onclick = function () {
   //クリックしてスタート
   //facebook-jsonを取得して表示
   let count = 0;
-  const limit = 50; //表示件数
+  const limit = 1; //表示件数
   const graph_api = 'https://graph.facebook.com/ig_hashtag_search?';
   const accessToken = 'EAAnGQ8kLkaUBAIY8dCfTvIYYri2LE322JrPErhftRqOj2GCyyil045DGekgaH6KYkNotsKASgDlPw6e4ZAtLxMhfuH4ZAwsj0E20p2ifYBmHxinZCdT7TKmILcLcZBnf8zUANt6EuLLlcH6wByM8uSG2AedtUluQUToTAYcgXBKzteGkmeadzXsYEC9kmHcZD'; // アクセストークン
   const businessID = '17841441477914224'; //グラフAPIエクスプローラで取得したinstagram_business_accountのID
@@ -12,29 +12,16 @@ document.getElementById("button").onclick = function () {
   input_message = document.getElementById("input_message").value; //テキストボックス内のキーワードを格納
   // console.log(input_message[5]);
   hashtag = input_message.split(/\s+/);
-  console.log(hashtag);
-  console.log(hashtag.length);
-  // console.log(hashtag[0]);
   
-
-  //promise.allを使って投稿検索を非同期処理する必要！
   // 非同期処理の定義
-
   function func1(t) {
-    console.log(new Date());
     console.log(t);
-    // return new Promise(resolve => {
-    //   console.log(new Date());
-    //     console.log(tag);
-    //     resolve(tag);
-    // })
-    // return new Promise(function (resolve, reject) {
-
 
     return new Promise(function (resolve, reject) {
       const url0 = graph_api + "user_id=" + businessID + "&q=" + t + "&access_token=" + accessToken;
       var dataId;
       var dataMedia;
+
       //タグID検索
       fetch(url0)
         .then((response) => {
@@ -58,13 +45,14 @@ document.getElementById("button").onclick = function () {
             })
 
             .then((result) => {
-              console.log(result);
-              dataMedia = result;
+              //console.log(result);
+              dataMedia0 = result;
+              dataMedia00 = result.data;
 
               //after
-              const after = dataMedia.paging.cursors.after;
+              const after = dataMedia0.paging.cursors.after;
               const url4 = url1 + dataId.data[0].id + '/recent_media?user_id=' + businessID + '&fields=media_url,permalink&limit=' + limit + 'after=' + after + '&access_token=' + accessToken;
-
+              console.log(after);
 
               fetch(url4)
                 .then((response) => {
@@ -72,11 +60,11 @@ document.getElementById("button").onclick = function () {
                 })
 
                 .then((result) => {
-                  console.log(result);
-                  dataMedia.push(result);
-                  console(dataMedia);
-
-
+                  //console.log(result);
+                  dataMedia01 = result.data;
+                  dataMedia.push(dataMedia0.data);
+                  dataMedia.push(result.data);
+                  console.log(dataMedia);
                 })
 
                 .catch((e) => {
@@ -286,9 +274,9 @@ if (hashtag.length == 1) {
 //   }
 
 
-  console.log(NewResult);
+  //console.log(NewResult);
   //表示
-  for (let i = 0; i < limit; i++) {
+  for (let i = 0; i < 10; i++) {
     console.log(i);
     text1 = '<li><a href="' + NewResult[i].permalink + '" target="_blank">';
     text2 = '<img src="' + NewResult[i].media_url + '">';
