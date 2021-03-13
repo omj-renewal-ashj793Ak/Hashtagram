@@ -21,7 +21,7 @@ document.getElementById("button").onclick = function () {
   // 非同期処理の定義
 
   function func1(t) {
-    // console.log(new Date());
+    console.log(new Date())
     console.log(t);
 
     return new Promise(function (resolve, reject) {
@@ -52,22 +52,23 @@ document.getElementById("button").onclick = function () {
             })
 
             .then((result) => {
+              console.log(t + "first");
               console.log(result);
               dataMedia = result;
 
               //after
               const after = dataMedia.paging.cursors.after;
               console.log(after);
-              const url4 = url1 + dataId.data[0].id + '/recent_media?user_id=' + businessID + '&fields=media_url,permalink&limit=' + limit + 'after=' + after + '&access_token=' + accessToken;
-
+              const url4 = url1 + dataId.data[0].id + '/recent_media?user_id=' + businessID + '&fields=media_url,permalink&limit=' + limit + '&after=' + after + '&access_token=' + accessToken;
               fetch(url4)
                 .then((response) => {
                   return response.json()
                 })
 
                 .then((result) => {
-                  console.log("after")
+                  console.log(t +"after")
                   console.log(result);
+                  dataMedia2 = result;
                   Array.prototype.push.apply(dataMedia.data, result.data);
                   console.log(dataMedia);
 
