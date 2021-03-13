@@ -16,9 +16,8 @@ document.getElementById("button").onclick = function () {
   console.log(hashtag);
   console.log(hashtag.length);
 
-  console.log(hashtag[0]);
-
-
+  // console.log(hashtag[0]);
+  
 
   //promise.allを使って投稿検索を非同期処理する必要！
   // 非同期処理の定義
