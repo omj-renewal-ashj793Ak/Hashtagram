@@ -15,9 +15,14 @@ document.getElementById("button").onclick = function () {
   
   // 非同期処理の定義
   function func1(t) {
+<<<<<<< HEAD
+=======
+    // console.log(new Date());
+>>>>>>> origin/michihiro
     console.log(t);
 
     return new Promise(function (resolve, reject) {
+
       const url0 = graph_api + "user_id=" + businessID + "&q=" + t + "&access_token=" + accessToken;
       var dataId;
       var dataMedia;
@@ -50,9 +55,15 @@ document.getElementById("button").onclick = function () {
               dataMedia00 = result.data;
 
               //after
+<<<<<<< HEAD
               const after = dataMedia0.paging.cursors.after;
               const url4 = url1 + dataId.data[0].id + '/recent_media?user_id=' + businessID + '&fields=media_url,permalink&limit=' + limit + 'after=' + after + '&access_token=' + accessToken;
               console.log(after);
+=======
+              const after = dataMedia.paging.cursors.after;
+              console.log(after);
+              const url4 = url1 + dataId.data[0].id + '/recent_media?user_id=' + businessID + '&fields=media_url,permalink&limit=' + limit + 'after=' + after + '&access_token=' + accessToken;
+>>>>>>> origin/michihiro
 
               fetch(url4)
                 .then((response) => {
@@ -60,28 +71,44 @@ document.getElementById("button").onclick = function () {
                 })
 
                 .then((result) => {
+<<<<<<< HEAD
                   //console.log(result);
                   dataMedia01 = result.data;
                   dataMedia.push(dataMedia0.data);
                   dataMedia.push(result.data);
                   console.log(dataMedia);
+=======
+                  console.log("after")
+                  console.log(result);
+                  Array.prototype.push.apply(dataMedia.data, result.data);
+                  console.log(dataMedia);
+
+
+                  for (let i = 0; i < 100; i++) {
+                    // console.log(i);
+                    text1 = '<li><a href="' + dataMedia.data[i].permalink + '" target="_blank">';
+                    text2 = '<img src="' + dataMedia.data[i].media_url + '">';
+                    text3 = '</a></li>';
+                    text = text + text1 + text2 + text3;
+                  }
+  
+                  $('#instagram-list').html(text);
+>>>>>>> origin/michihiro
                 })
 
                 .catch((e) => {
                   console.log(e) //エラーをキャッチし表示     
                 })
-          
 
-              for (let i = 0; i < limit; i++) {
-                // console.log(i);
-                text1 = '<li><a href="' + dataMedia.data[i].permalink + '" target="_blank">';
-                text2 = '<img src="' + dataMedia.data[i].media_url + '">';
-                text3 = '</a></li>';
-                text = text + text1 + text2 + text3;
-              }
+                // for (let i = 0; i < limit; i++) {
+                //   // console.log(i);
+                //   text1 = '<li><a href="' + dataMedia.data[i].permalink + '" target="_blank">';
+                //   text2 = '<img src="' + dataMedia.data[i].media_url + '">';
+                //   text3 = '</a></li>';
+                //   text = text + text1 + text2 + text3;
+                // }
 
-              // console.log(text);
-              $('#instagram-list').html(text);
+                // $('#instagram-list').html(text);
 
 
 
@@ -102,88 +129,10 @@ document.getElementById("button").onclick = function () {
 
 
 
-//JSONデータを引数に受け取ってDOM操作を行う関数を作成
-// function Example(jsonObj) {
-//   const data = jsonObj.results[0]
-//   name.textContent = data.name;
-//   age.textContent = data.age;
-// }
-
-
-
-//     let request = new XMLHttpRequest();
-//     request.open('GET', url, false);
-//     request.send(null);
-//     let url3;
-
-//     if (request.readyState === 4 && request.status === 200) { //リクエストの成功判定
-//       let data = request.responseText;
-//       //console.log(data);//JSONデータの表示
-//       let getid = JSON.parse(data); //JSONを連想配列にする
-//       console.log(getid.data[0].id); //連想配列内のオブジェクトからIDまで行く
-//       const url1 = 'https://graph.facebook.com/'
-//       const url2 = '/recent_media?user_id=' + businessID + '&fields=media_url,permalink&limit=' + limit + '&access_token=' + accessToken;
-//       url3 = url1 + getid.data[0].id + url2;
-//       //console.log(url3);//投稿検索URLの表示
-//     }
-
-//     //タグIDから投稿IDを検索する
-//     let request2 = new XMLHttpRequest();
-//     request2.open('GET', url3, false);
-//     request2.send(null);
-
-//     // let getid2 ;
-
-//     if (request2.status == 200) {
-//       let data2 = request2.responseText;
-//       //console.log(data2);
-//       let getid2 = JSON.parse(data2);
-//       results1.push(getid2.data); //JSONデータをひとつの配列に格納
-//       //console.log(results1);
-//     }
-
-//     if (results1.length == 3) {
-//       resolve(`完了`);
-//     } else {
-//       reject('失敗');
-//     }
-//   });
-// }
-
-if (hashtag.length == 5) {
-  Promise.all([func1(hashtag[0]), func1(hashtag[1]), func1(hashtag[2]), func1(hashtag[3]), func1(hashtag[4])])
-    .then((result) => {
-      console.log(result);
-    })
-    .catch((result) => {
-      console.log(result);
-    });
-}
-
-if (hashtag.length == 4) {
-  Promise.all([func1(hashtag[0]), func1(hashtag[1]), func1(hashtag[2]), func1(hashtag[3])])
-    .then((result) => {
-      console.log(result);
-    })
-    .catch((result) => {
-      console.log(result);
-    });
-}
-
-if (hashtag.length == 3) {
-  Promise.all([func1(hashtag[0]), func1(hashtag[1]), func1(hashtag[2])])
-    .then((result) => {
-      console.log(result);
-    })
-    .catch((result) => {
-      console.log(result);
-    });
-}
-
 if (hashtag.length == 2) {
   console.log(hashtag);
   Promise.all(hashtag.map(function (tag) {
-      console.log(tag);
+      // console.log(tag);
       // return func1(tag);
       return new Promise(resolve => {
         return func1(tag)
@@ -204,25 +153,8 @@ if (hashtag.length == 2) {
     .catch((result) => {
       console.log(result);
     });
-  // Promise.all([func1(hashtag[0]), func1(hashtag[1])])
-  //   .then((result) => {
-  //     console.log(result);
-  //   })
-  //   .catch((result) => {
-  //     console.log(result);
-  //   });
 }
 
-if (hashtag.length == 1) {
-  Promise.all([func1(hashtag[0])])
-    .then((result) => {
-      console.log(result);
-    })
-    .catch((result) => {
-      console.log(result);
-    });
-}
-}
 
 
 
@@ -274,6 +206,7 @@ if (hashtag.length == 1) {
 //   }
 
 
+<<<<<<< HEAD
   //console.log(NewResult);
   //表示
   for (let i = 0; i < 10; i++) {
@@ -282,15 +215,21 @@ if (hashtag.length == 1) {
     text2 = '<img src="' + NewResult[i].media_url + '">';
     text3 = '</a></li>';
     text = text + text1 + text2 + text3;
+=======
+  // console.log(NewResult);
+  // //表示
+  // for (let i = 0; i < limit; i++) {
+  //   console.log(i);
+  //   text1 = '<li><a href="' + NewResult[i].permalink + '" target="_blank">';
+  //   text2 = '<img src="' + NewResult[i].media_url + '">';
+  //   text3 = '</a></li>';
+  //   text = text + text1 + text2 + text3;
+>>>>>>> origin/michihiro
 
 
-  }
+  // }
   // }
 
-
-
-
-
-
-  console.log(text);
-  $('#instagram-list').html(text);
+  // console.log(text);
+  // $('#instagram-list').html(text);
+}
