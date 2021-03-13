@@ -12,10 +12,8 @@ document.getElementById("button").onclick = function () {
   input_message = document.getElementById("input_message").value; //テキストボックス内のキーワードを格納
   // console.log(input_message[5]);
   hashtag = input_message.split(/\s+/);
-
   console.log(hashtag);
   console.log(hashtag.length);
-
   // console.log(hashtag[0]);
   
 
