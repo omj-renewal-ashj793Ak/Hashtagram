@@ -63,13 +63,13 @@ button, input, optgroup, select, textarea {
 }
 
 .instagram {
-    margin: 0 auto;
+    margin: 0;
     
 }
 
 .instagram ul {
     display: flex;
-    justify-content: center;
+    justify-content: inherit;
     flex-wrap: wrap;
     list-style: none;
 }
@@ -83,8 +83,4 @@ button, input, optgroup, select, textarea {
 
 .instagram img {
     width: 23rem;
-}
-
-#instagram-list{
-    padding: 0;
 }
