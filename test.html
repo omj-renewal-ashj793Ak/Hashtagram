@@ -13,8 +13,8 @@
         <div class="search">
             <div class="container">
                 <form id="form1" action="#">
-                    <input type="text" id="input_message" value="">
-                    <input type="button"  id="button" value="search">
+                    <input type="text" id="input_message" value="" onsubmit="return checkClick();" placeholder="タグを入力してください">
+                    <input type="submit"  id="button" value="search">
                 </form>
             </div>
         </div>
@@ -31,6 +31,7 @@
     </div>
 </main>
     <script src="https://code.jquery.com/jquery.min.js"></script>
-    <script src="tech5.js"></script>
+    <script src="tech6.js"></script>
+    <script src="click-search.js"></script>
 </body>
 </html>

@@ -1,4 +1,5 @@
 document.getElementById("button").onclick = function () {
+
     //クリックしてスタート
     //facebook-jsonを取得して表示
     let count = 0;
@@ -20,8 +21,9 @@ document.getElementById("button").onclick = function () {
     //promise.allを使って投稿検索を非同期処理する必要！
     // 非同期処理の定義
 
+
     function func1(t) {
-        // console.log(new Date());
+        console.log(new Date())
         console.log(t);
 
         return new Promise(function (resolve, reject) {
@@ -52,61 +54,68 @@ document.getElementById("button").onclick = function () {
                         })
 
                         .then((result) => {
+                            console.log(t + "first");
                             console.log(result);
                             dataMedia = result;
 
-                            //after
-                            const after = dataMedia.paging.cursors.after;
-                            console.log(after);
-                            const url4 = url1 + dataId.data[0].id + '/recent_media?user_id=' + businessID + '&fields=media_url,permalink&limit=' + limit + 'after=' + after + '&access_token=' + accessToken;
-
-                            fetch(url4)
-                                .then((response) => {
-                                    return response.json()
-                                })
-
-                                .then((result) => {
-                                    console.log("after")
-                                    console.log(result);
-                                    Array.prototype.push.apply(dataMedia.data, result.data);
-                                    console.log(dataMedia);
-
-
-                                    for (let i = 0; i < 100; i++) {
-                                        // console.log(i);
-                                        text1 = '<li><a href="' + dataMedia.data[i].permalink + '" target="_blank">';
-                                        text2 = '<img src="' + dataMedia.data[i].media_url + '">';
-                                        text3 = '</a></li>';
-                                        text = text + text1 + text2 + text3;
-                                    }
-
-                                    $('#instagram-list').html(text);
-                                })
-
-                                .catch((e) => {
-                                    console.log(e) //エラーをキャッチし表示     
-                                })
-
-                            // for (let i = 0; i < limit; i++) {
-                            //   // console.log(i);
-                            //   text1 = '<li><a href="' + dataMedia.data[i].permalink + '" target="_blank">';
-                            //   text2 = '<img src="' + dataMedia.data[i].media_url + '">';
-                            //   text3 = '</a></li>';
-                            //   text = text + text1 + text2 + text3;
+                            func2(dataMedia);
+                            // for (let i = 0; i < 10; i++) {
+                            //     text1 = '<li><a href="' + dataMedia.data[i].permalink + '" target="_blank">';
+                            //     text2 = '<img src="' + dataMedia.data[i].media_url + '">';
+                            //     text3 = '</a></li>';
+                            //     text = text + text1 + text2 + text3;
                             // }
 
                             // $('#instagram-list').html(text);
 
 
+                            //after
+                            let after = dataMedia.paging.cursors.after;
+                            console.log(after);
+                            
 
+                            async function myasync(after2) {
+                                // console.log('myasync');
+                                const url4 = url1 + dataId.data[0].id + '/recent_media?user_id=' + businessID + '&fields=media_url,permalink&limit=' + limit + '&after=' + after2 + '&access_token=' + accessToken;
+                                await fetch(url4)
+                                    .then((response) => {
+                                        return response.json()
+                                    })
+
+                                    .then((result) => {
+                                        console.log(t + "after")
+                                        console.log(result);
+                                        dataMedia2 = result;
+                                        Array.prototype.push.apply(dataMedia.data, result.data);
+                                        console.log(dataMedia);
+
+                                        after = dataMedia2.paging.cursors.after;
+                                        // //  console.log(after);
+                                        // url4 = url1 + dataId.data[0].id + '/recent_media?user_id=' + businessID + '&fields=media_url,permalink&limit=' + limit + '&after=' + after + '&access_token=' + accessToken;
+                                        for (let i = 0; i < 50; i++) {
+                                            // console.log(i);
+                                            text1 = '<li><a href="' + dataMedia2.data[i].permalink + '" target="_blank">';
+                                            text2 = '<img src="' + dataMedia2.data[i].media_url + '">';
+                                            text3 = '</a></li>';
+                                            text = text + text1 + text2 + text3;
+                                        }
+
+                                        $('#instagram-list').html(text);
+
+                                        if (dataMedia2.data.length = 50) {
+                                            myasync(after);
+                                        }
+                                        return;
+                                    })
+                                    .catch((e) => {
+                                        console.log(e) //エラーをキャッチし表示     
+                                    })
+                            }
+                            myasync(after);
                         })
-
                         .catch((e) => {
                             console.log(e) //エラーをキャッチし表示     
                         })
-
-
-
                 })
                 .catch((e) => {
                     console.log(e) //エラーをキャッチし表示     
@@ -114,9 +123,11 @@ document.getElementById("button").onclick = function () {
         })
     }
 
+    function func2 (mmm) {
+        console.log(mmm);
+    }
 
-
-    if (hashtag.length == 2) {
+    if (hashtag.length < 5) {
         console.log(hashtag);
         Promise.all(hashtag.map(function (tag) {
                 // console.log(tag);
@@ -140,72 +151,7 @@ document.getElementById("button").onclick = function () {
             .catch((result) => {
                 console.log(result);
             });
+    }else{
+        console.log("五つ以下のタグを入力してください");
     }
-
-
-
-
-
-    //   //id比較
-    //   // ハッシュタグ複数の場合
-    //   let NewResult = [];
-    //   // if(hashtag.length > 1){
-
-    //   //   for(let i=0;i<limit;i++){
-    //   //       filteredResult[i] = results1[0][i];
-    //   //   }
-    //   //   let flag = 0;
-    //   //   for(let cnt=0;cnt<limit;cnt++){
-    //   //     for(let i=0;i<hashtag.length-1;i++){
-    //   //       for(let j=0;j<limit;j++){
-    //   //         // console.log(results);
-    //   //         // console.log(i+1);
-    //   //         // console.log(results[i+1]);
-    //   //         if(filteredResult[cnt].id == results1[i+1][j].id){
-    //   //           flag = 1;
-    //   //         }
-    //   //        }
-    //   //     }
-    //   //     if(flag == 1){
-    //   //       NewResult.push(filteredResult[cnt]);
-    //   //     }
-    //   //     flag = 0;
-    //   //   }
-    //   //   //console.log(NewResult);
-
-    //   // console.log(NewResult);
-    //   // //表示
-    //   //   for(let i=0; i<NewResult.length;i++) {
-    //   //     console.log(i);
-    //   //     text1 = '<li><a href="'+NewResult[i].permalink+'" target="_blank">';
-    //   //     text2 = '<img src="'+NewResult[i].media_url+'">';
-    //   //     text3 = '</a></li>';
-    //   //     text = text + text1 + text2 + text3;
-    //   //     //console.log(NewResult[i]);
-    //   //   console.log(NewResult[i].permalink);
-
-    //   //   }
-    //   // }
-    //   //ハッシュタグひとつの場合
-    //   // else{
-    //   for (let i = 0; i < limit; i++) {
-    //     NewResult.push(results1[0][i]);
-    //   }
-
-
-    // console.log(NewResult);
-    // //表示
-    // for (let i = 0; i < limit; i++) {
-    //   console.log(i);
-    //   text1 = '<li><a href="' + NewResult[i].permalink + '" target="_blank">';
-    //   text2 = '<img src="' + NewResult[i].media_url + '">';
-    //   text3 = '</a></li>';
-    //   text = text + text1 + text2 + text3;
-
-
-    // }
-    // }
-
-    // console.log(text);
-    // $('#instagram-list').html(text);
 }
